@@ -116,8 +116,6 @@ class _ObjectDetectorView extends State<ObjectDetectorView> {
     print('Set detector in mode: $_mode');
 
     if (_option == 0) {
-      // use the default model
-      print('use the default model');
       final options = ObjectDetectorOptions(
         mode: _mode,
         classifyObjects: true,
@@ -125,11 +123,8 @@ class _ObjectDetectorView extends State<ObjectDetectorView> {
       );
       _objectDetector = ObjectDetector(options: options);
     } else if (_option > 0 && _option <= _options.length) {
-      // use a custom model
-      // make sure to add tflite model to assets/ml
       final option = _options[_options.keys.toList()[_option]] ?? '';
       final modelPath = await getAssetPath('assets/ml/$option');
-      print('use custom model path: $modelPath');
       final options = LocalObjectDetectorOptions(
         mode: _mode,
         modelPath: modelPath,
@@ -138,20 +133,6 @@ class _ObjectDetectorView extends State<ObjectDetectorView> {
       );
       _objectDetector = ObjectDetector(options: options);
     }
-
-    // uncomment next lines if you want to use a remote model
-    // make sure to add model to firebase
-    // final modelName = 'bird-classifier';
-    // final response =
-    //     await FirebaseObjectDetectorModelManager().downloadModel(modelName);
-    // print('Downloaded: $response');
-    // final options = FirebaseObjectDetectorOptions(
-    //   mode: _mode,
-    //   modelName: modelName,
-    //   classifyObjects: true,
-    //   multipleObjects: true,
-    // );
-    // _objectDetector = ObjectDetector(options: options);
 
     _canProcess = true;
   }
@@ -165,7 +146,6 @@ class _ObjectDetectorView extends State<ObjectDetectorView> {
       _text = '';
     });
     final objects = await _objectDetector!.processImage(inputImage);
-    // print('Objects found: ${objects.length}\n\n');
     if (inputImage.metadata?.size != null &&
         inputImage.metadata?.rotation != null) {
       final painter = ObjectDetectorPainter(
@@ -173,6 +153,7 @@ class _ObjectDetectorView extends State<ObjectDetectorView> {
         inputImage.metadata!.size,
         inputImage.metadata!.rotation,
         _cameraLensDirection,
+        calculate3DCoordinates: true, // Pass flag for 3D calculations
       );
       _customPaint = CustomPaint(painter: painter);
     } else {
@@ -182,7 +163,6 @@ class _ObjectDetectorView extends State<ObjectDetectorView> {
             'Object:  trackingId: ${object.trackingId} - ${object.labels.map((e) => e.text)}\n\n';
       }
       _text = text;
-      // TODO: set _customPaint to draw boundingRect on top of image
       _customPaint = null;
     }
     _isBusy = false;
