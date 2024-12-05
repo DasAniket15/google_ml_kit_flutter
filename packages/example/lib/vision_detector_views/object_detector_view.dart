@@ -23,23 +23,6 @@ class _ObjectDetectorView extends State<ObjectDetectorView> {
   final _options = {
     'default': '',
     'object_custom': 'object_labeler.tflite',
-    'fruits': 'object_labeler_fruits.tflite',
-    'flowers': 'object_labeler_flowers.tflite',
-    'birds': 'lite-model_aiy_vision_classifier_birds_V1_3.tflite',
-    // https://tfhub.dev/google/lite-model/aiy/vision/classifier/birds_V1/3
-
-    'food': 'lite-model_aiy_vision_classifier_food_V1_1.tflite',
-    // https://tfhub.dev/google/lite-model/aiy/vision/classifier/food_V1/1
-
-    'plants': 'lite-model_aiy_vision_classifier_plants_V1_3.tflite',
-    // https://tfhub.dev/google/lite-model/aiy/vision/classifier/plants_V1/3
-
-    'mushrooms': 'lite-model_models_mushroom-identification_v1_1.tflite',
-    // https://tfhub.dev/bohemian-visual-recognition-alliance/lite-model/models/mushroom-identification_v1/1
-
-    'landmarks':
-        'lite-model_on_device_vision_classifier_landmarks_classifier_north_america_V1_1.tflite',
-    // https://tfhub.dev/google/lite-model/on_device_vision/classifier/landmarks_classifier_north_america_V1/1
   };
 
   @override
