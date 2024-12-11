@@ -1,3 +1,4 @@
+// ignore: unused_import
 import 'dart:io';
 import 'dart:ui';
 import 'dart:ui' as ui;
@@ -115,6 +116,7 @@ class ObjectDetectorPainter extends CustomPainter {
   Offset _estimate3DCoordinates(Rect boundingBox, Size widgetSize) {
     final centerX = boundingBox.center.dx / widgetSize.width;
     final centerY = boundingBox.center.dy / widgetSize.height;
+    // ignore: unused_local_variable
     final depth = 1.0 / boundingBox.width;
 
     return Offset(centerX, centerY); // Replace with actual depth estimation
