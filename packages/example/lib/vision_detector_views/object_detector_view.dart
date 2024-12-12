@@ -22,7 +22,8 @@ class _ObjectDetectorView extends State<ObjectDetectorView> {
   int _option = 0;
   final _options = {
     'default': '',
-    'object_custom': 'object_labeler.tflite',
+    'object_labeler': 'object_labeler.tflite',
+    'google buds pro': '',
   };
 
   @override
